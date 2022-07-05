@@ -1,0 +1,32 @@
+﻿<Window x:Class="Project_003.SelectRole"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_003"
+        mc:Ignorable="d"
+               Title="Выбор роли" Height="350" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Выберите роль"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               Margin="20"
+            />
+        <Button x:Name="ConsultantBtn" 
+                Grid.Column="0"
+                Content="Консультант"
+                Margin="30 100"
+                Background="Snow" 
+            />
+        <Button x:Name="ManagerBtn"
+                Grid.Column="1"
+                Content="Менеджер"
+                Margin="30 100"
+                Background="Snow" 
+            />
+    </Grid>
+</Window>
