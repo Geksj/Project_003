@@ -5,20 +5,23 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Project_003
 {
-   public class Manager : Consultant
+   internal class Manager : Consultant
     {
         public override ObservableCollection<Person> GetPersons()
         {
             var result = new ObservableCollection<Person>();
-            PersonDataEntities dataEntities = new PersonDataEntities();
-            dataEntities.PersonData.Load();
-            var res = dataEntities.PersonData;
-            foreach (var item in res)
+            using (StreamReader sr = new StreamReader("DataBase.txt"))
             {
-                result.Add(new Person(item.Id, item.Surname, item.First_Name, item.Second_Name, item.Number_Phone, item.Pasport_Data));
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] data = line.Split('#');
+                    result.Add(new Person(data[0], data[1], data[2], data[3], data[4], data[5]));
+                }
             }
             return result;
         }

@@ -14,17 +14,25 @@ using System.Windows.Shapes;
 
 namespace Project_003
 {
-    public partial class AddWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для ChangeWindow.xaml
+    /// </summary>
+    public partial class ChangeWindow : Window
     {
-        public AddWindow()
+        int index;
+        bool flag;
+        public ChangeWindow(int index, bool flag)
         {
             InitializeComponent();
+            this.index = index;
+            this.flag = flag;
+            
         }
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            Presenter p = new Presenter(true);
-            p.AddPerson(SurnameTB.Text, FirstNameTB.Text, SecondNameTB.Text, NumberPhoneTB.Text, PasportDataTB.Text);
+            Presenter p = new Presenter(flag);
+            p.ChangePerson(index, SurnameTB.Text, FirstNameTB.Text, SecondNameTB.Text, NumberPhoneTB.Text, PasportDataTB.Text, flag);
             this.DialogResult = true;
         }
     }

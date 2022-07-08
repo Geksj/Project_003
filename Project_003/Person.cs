@@ -8,31 +8,21 @@ namespace Project_003
 {
     public class Person
     {
-        public int Id { get; }
-
-        public  string Surname { get; set; }
+        public string Id { get; set; }
+        public string Surname { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string NumberPhone { get; set; }
         public string PasportData { get; set; }
 
-        public Person(int Id, string Surname, string FirstName, string SecondName, string NumberPhone, string PasportData)
+        public Person(string id, string surname, string firstName, string secondName, string numberPhone, string pasportData)
         {
-            this.Id = Id;
-            this.Surname = Surname;
-            this.FirstName = FirstName;
-            this.SecondName = SecondName;
-            this.NumberPhone = NumberPhone;
-            this.PasportData = PasportData;
-        }
-
-        public Person(string Surname, string FirstName, string SecondName, string NumberPhone, string PasportData)
-        {
-            this.Surname = Surname;
-            this.FirstName = FirstName;
-            this.SecondName = SecondName;
-            this.NumberPhone = NumberPhone;
-            this.PasportData = PasportData;
+            Id = id;
+            Surname = surname;
+            FirstName = firstName;
+            SecondName = secondName;
+            NumberPhone = numberPhone;
+            PasportData = pasportData;
         }
     }
 }
