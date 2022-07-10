@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Project_003
 {
@@ -24,5 +25,7 @@ namespace Project_003
             NumberPhone = numberPhone;
             PasportData = pasportData;
         }
+
+        
     }
 }

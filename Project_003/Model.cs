@@ -11,31 +11,48 @@ namespace Project_003
     internal class Model
     {
         private int id;
-        private Consultant personC;
-        private Manager personM;
-        private bool flag;
+        private Consultant consultant;
+        private Manager manager;
         public Model()
         {
-            personC = new Consultant();
-            personM = new Manager();
+            consultant = new Consultant();
+            manager = new Manager();
         }
 
-        public ObservableCollection<Person>Load(bool flag)
+        public ObservableCollection<Person> DataUploud(bool flag)
         {
-            this.flag = flag;
-            if ( flag != false)
+            ObservableCollection<Person> personGroup = new ObservableCollection<Person>();
+            using (StreamReader sr = new StreamReader("DataBase.txt"))
             {
-                return personM.GetPersons();
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] data = line.Split('#');
+                    if (flag != false)
+                    {
+                        foreach (var item in manager.ViewClientData(data))
+                        {
+                            personGroup.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in consultant.ViewClientData(data))
+                        {
+                            personGroup.Add(item);
+                        }
+                    }
+                }
             }
-            return personC.GetPersons();
+            return personGroup;
         }
+
         private int NextId()
         {
             id = 10;
             id++;
             return id;
         }
-
 
         public void AddPerson(string SName, string FName, string SecName, string NPhone, string PData)
         {
@@ -47,9 +64,17 @@ namespace Project_003
                 sw.WriteLine(text);
             }
         }
+
         public void ChangePerson(int index, string SName, string FName, string SecName, string NPhone, string PData, bool flag)
         {
-            personC.ChangePerson(index, SName, FName, SecName, NPhone);
+            if (flag != false)
+            {
+                manager.DataEditing(index, SName, FName, SecName, NPhone, PData);
+            }
+           else
+            {
+                consultant.DataEditing(index, SName, FName, SecName, NPhone, DataUploud(true)[index].PasportData);
+            }
             SaveLastChange(flag);
         }
         public void RemovePerson(int index)

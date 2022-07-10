@@ -30,13 +30,13 @@ namespace Project_003
 
             string [] text = File.ReadAllText("logLastChange.txt").Split('#');
 
-                return text[0] +" " + text[1];
+                return text[0] + " " + text[1];
             
         }
 
         public ObservableCollection<Person> Load()
         {
-                return model.Load(flag);
+                return model.DataUploud(flag);
         }
 
         public void AddPerson(string SName, string FName, string SecName, string NPhone, string PData)

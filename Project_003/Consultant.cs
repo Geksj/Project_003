@@ -8,27 +8,19 @@ using System.IO;
 
 namespace Project_003
 {
-    internal class Consultant
+    internal class Consultant : IClientDataMonitor
     {
-        public virtual ObservableCollection<Person> GetPersons()
+        public ObservableCollection<Person> ViewClientData(string[] personTemp)
         {
-            var result = new ObservableCollection<Person>();
-            using (StreamReader sr = new StreamReader("DataBase.txt"))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] data = line.Split('#');
-                    result.Add(new Person(data[0], data[1], data[2], data[3], data[4], "**** ******"));
-                }
-            }
-                return result;
+            ObservableCollection<Person> personGroup = new ObservableCollection<Person>();
+            personGroup.Add(new Person(personTemp[0], personTemp[1], personTemp[2], personTemp[3], personTemp[4], "**** *******"));
+            return personGroup;
         }
-        public void ChangePerson(int index, string SName, string FName, string SecName, string NPhone)
+
+        public void DataEditing(int index, string SName, string FName, string SecName, string NPhone, string PData)
         {
-            Manager m = new Manager();
             string[] line = File.ReadAllLines("dataBase.txt");
-            line[index] = $"{index + 1}#{SName}#{FName}#{SecName}#{NPhone}#{m.GetPersons().Last().PasportData}";
+            line[index] = $"{index + 1}#{SName}#{FName}#{SecName}#{NPhone}#{PData}";
             File.WriteAllLines("dataBase.txt", line);
         }
     }
