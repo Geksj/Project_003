@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Project_003
 {
     internal class Presenter
     {
-        private Model model;
+        Model model;
+       
         bool flag;
 
         public Presenter(bool flag)
@@ -25,18 +28,10 @@ namespace Project_003
             if (flag == true) { role = "Роль: Менеджер"; } 
             return role;
         }
-        public string LoadLastChange()
-        {
-
-            string [] text = File.ReadAllText("logLastChange.txt").Split('#');
-
-                return text[0] + " " + text[1];
-            
-        }
 
         public ObservableCollection<Person> Load()
         {
-                return model.DataUploud(flag);
+            return model.DataStorage(flag);
         }
 
         public void AddPerson(string SName, string FName, string SecName, string NPhone, string PData)
@@ -52,6 +47,9 @@ namespace Project_003
         {
             model.RemovePerson(index);
         }
+
+
+
     }
 
 }

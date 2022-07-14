@@ -27,15 +27,11 @@ namespace Project_003
             InitializeComponent();
             ListViewDB.ItemsSource = p.Load();
             NameRoleTB.Text = p.ViewRole();
-            LastChangeTB.Text = p.LoadLastChange();
-            RemoveBnt.IsEnabled = true;
-            AddBtn.IsEnabled = true;
             if (flag != true)
             {
                 RemoveBnt.IsEnabled = false;
                 AddBtn.IsEnabled = false;
             }
-            
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)

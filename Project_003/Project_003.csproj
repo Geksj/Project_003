@@ -70,6 +70,7 @@
     <Compile Include="ChangeWindow.xaml.cs">
       <DependentUpon>ChangeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataLoad.cs" />
     <Compile Include="IClientDataMonitor.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="SelectRole.xaml.cs">

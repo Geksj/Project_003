@@ -5,53 +5,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Project_003
 {
-    internal class Model
+    public class Model
     {
         private int id;
         private Consultant consultant;
         private Manager manager;
+        private ObservableCollection<Person> personGroup;
+
         public Model()
         {
             consultant = new Consultant();
             manager = new Manager();
+            personGroup = new ObservableCollection<Person>();
         }
 
-        public ObservableCollection<Person> DataUploud(bool flag)
+        public ObservableCollection<Person> DataStorage(bool flag)
         {
-            ObservableCollection<Person> personGroup = new ObservableCollection<Person>();
-            using (StreamReader sr = new StreamReader("DataBase.txt"))
+            foreach (var item in DataLoad.DataUploud(flag))
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] data = line.Split('#');
-                    if (flag != false)
-                    {
-                        foreach (var item in manager.ViewClientData(data))
-                        {
-                            personGroup.Add(item);
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in consultant.ViewClientData(data))
-                        {
-                            personGroup.Add(item);
-                        }
-                    }
-                }
+                personGroup.Add(item);
             }
-            return personGroup;
-        }
-
-        private int NextId()
-        {
-            id = 10;
-            id++;
-            return id;
+            return personGroup;    
         }
 
         public void AddPerson(string SName, string FName, string SecName, string NPhone, string PData)
@@ -73,7 +52,7 @@ namespace Project_003
             }
            else
             {
-                consultant.DataEditing(index, SName, FName, SecName, NPhone, DataUploud(true)[index].PasportData);
+                consultant.DataEditing(index, SName, FName, SecName, NPhone, DataStorage(true)[index].PasportData);
             }
             SaveLastChange(flag);
         }
@@ -101,6 +80,13 @@ namespace Project_003
                 string line = $"{time}#{role}";
                 sw.WriteLine(line);
             }
+        }
+
+        private int NextId()
+        {
+            id = 10;
+            id++;
+            return id;
         }
     }
 }

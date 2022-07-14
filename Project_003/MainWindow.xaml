@@ -33,7 +33,7 @@
                     Width="135"
                     Height="30"
                     Content="Добавить" Click="AddBtn_Click"
-                    
+                    IsEnabled="True"
             />
             <Button x:Name="ChangeBtn" 
                     Margin="0 10"
@@ -46,15 +46,18 @@
                     Width="135"
                     Height="30"
                     Content="Удалить" Click="RemoveBnt_Click"
+                    IsEnabled="True"
             />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Последние изменения:" Margin="5"/>
-            <TextBlock x:Name="LastChangeTB" Margin="5"/>
+            <TextBlock x:Name="timeChangeTB" Text="" Margin="5"/>
+            <TextBlock x:Name="roleChangeTB" Text="" Margin="5"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Horizontal">
             <TextBlock x:Name="NameRoleTB" Text="Роль:" Margin="5"/>
-            <TextBlock Margin="5"/>
+            <TextBlock Text="{Binding LastTime}" Margin="5"/>
+            <TextBlock Text="{Binding RoleLast}" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>
